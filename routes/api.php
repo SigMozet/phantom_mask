@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('pharmacies')->group(function () {
+    //單一會員資料查詢
+    Route::get('openOnTime', 'PharmaciesController@checkOpen');
+});
