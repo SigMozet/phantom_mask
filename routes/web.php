@@ -25,4 +25,5 @@ Route::get('token', 'App\Http\Controllers\CsrfController@token');
 Route::prefix('Pharmacies')->group(function () {
     Route::post('openOnTime', 'App\Http\Controllers\PharmaciesController@checkOpenAtTime');
     Route::post('openAtDay', 'App\Http\Controllers\PharmaciesController@checkOpenOnDay');
+    Route::get('getProduct/{phar_id}', 'App\Http\Controllers\PharmaciesController@getProduct');
 });

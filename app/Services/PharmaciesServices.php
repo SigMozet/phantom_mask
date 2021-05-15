@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Repository\PharmaciesRepo as PharmaciesRepo;
 use App\Repository\BusinessRepo as BusinessRepo;
+use App\Repository\MasksRepo as MasksRepo;
 
 
 class PharmaciesServices
@@ -10,11 +11,13 @@ class PharmaciesServices
     public function __construct
     (
         PharmaciesRepo $repo,
-        BusinessRepo $business_repo
+        BusinessRepo $business_repo,
+        MasksRepo $masks_repo
     )
     {
         $this->repo = $repo;
         $this->business_repo = $business_repo;
+        $this->masks_repo = $masks_repo;
     }
 
     public function checkOpenAtTime($request)
@@ -48,6 +51,11 @@ class PharmaciesServices
 
         //以id撈藥局資料
         return ($this->repo->getDataByIdArray($id_array));
+    }
 
+    public function getProductByPharID($phar_id)
+    {
+        //以id撈藥局資料
+        return ($this->masks_repo->getProductByPharID($phar_id));
     }
 }

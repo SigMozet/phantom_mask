@@ -12,14 +12,34 @@ class PharmaciesController extends Controller
     {
         $this->service = $service;
     }
-
+    
+    /**
+     * 查詢 某天某時 有營業的藥局
+     * @param  mixed $request
+     * @return void
+     */
     public function checkOpenAtTime(Request $request)
     {
         return $this->service->checkOpenAtTime($request);
     }
-
+    
+    /**
+     * 查詢 某天 有營業的藥局
+     * @param  mixed $request
+     * @return void
+     */
     public function checkOpenOnDay(Request $request)
     {
         return $this->service->checkOpenOnDay($request);
+    }
+
+    /**
+     * 查詢 指定藥局 販售的商品
+     * @param  mixed $request
+     * @return void
+     */
+    public function getProduct($phar_id)
+    {
+        return $this->service->getProductByPharID($phar_id);
     }
 }
