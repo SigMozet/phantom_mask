@@ -35,11 +35,21 @@ class PharmaciesController extends Controller
 
     /**
      * 查詢 指定藥局 販售的商品
-     * @param  mixed $request
+     * @param  mixed $phar_id
      * @return void
      */
     public function getProduct($phar_id)
     {
         return $this->service->getProductByPharID($phar_id);
+    }
+
+    /**
+     * 以 名稱 搜尋藥局
+     * @param  mixed $phar_name
+     * @return void
+     */
+    public function search($phar_name)
+    {
+        return $this->service->searchByName($phar_name);
     }
 }

@@ -58,4 +58,10 @@ class PharmaciesServices
         //以id撈藥局資料
         return ($this->masks_repo->getProductByPharID($phar_id));
     }
+
+    public function searchByName($phar_name)
+    {
+        //以姓名搜尋藥局
+        return ($this->repo->searchByName($phar_name));
+    }
 }

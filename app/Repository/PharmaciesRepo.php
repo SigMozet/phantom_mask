@@ -16,4 +16,13 @@ class PharmaciesRepo
 
         return ($data) ? $data : null;
     }
+
+    public function searchByName($phar_name){
+
+        $data = DB::table('pharmacies')
+        ->where('name','LIKE','%'.$phar_name.'%')
+        ->get();
+
+        return ($data) ? $data : null;
+    }
 }

@@ -18,4 +18,14 @@ class MasksRepo
         return $data;
     }
 
+    public function searchByName($mask_name)
+    {
+
+        $data = DB::table('masks')
+        ->where('name','LIKE','%'.$mask_name.'%')
+        ->get();
+
+        return $data;
+    }
+
 }
