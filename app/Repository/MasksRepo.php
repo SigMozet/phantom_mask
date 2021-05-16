@@ -48,8 +48,9 @@ class MasksRepo
                 break;
         }
 
-
-
+        
+        //子查詢先搜尋出 口罩資料庫中符合價格區間的資料，並GROUP BY藥局ID
+        //得到符合資格的藥局ID與庫存數後，主查詢查詢庫存數大於或小於指定數目的藥局ID
         $data = DB::select
         ('SELECT DISTINCT(phar_id), sub.stocks FROM masks
             INNER JOIN 
