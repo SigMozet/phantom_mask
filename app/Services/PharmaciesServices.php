@@ -64,4 +64,33 @@ class PharmaciesServices
         //以姓名搜尋藥局
         return ($this->repo->searchByName($phar_name));
     }
+
+    public function searchByPriceAndStock($request)
+    {
+        //以 價格範圍、庫存數 搜尋藥局
+        $filterd_phar =  ($this->masks_repo->searchPharByPriceAndStock($request));
+        /*
+        $filterd_phar =
+        {
+            "phar_id": 2,
+            "stocks": "30"
+        },
+        {
+            "phar_id": 9,
+            "stocks": "20"
+        },
+        */
+        //將所有符合條件的phar_id存成陣列
+        $phar_id_array = array();
+        foreach($filterd_phar as $key=>$value){
+            array_push($phar_id_array,$value->phar_id);
+        }
+
+        //以phar_id查符合條件的藥局資料，並將每筆藥局資料附上他所擁有的庫存數
+        $phar_data = ($this->repo->getDataByIdArray($phar_id_array));
+        foreach($phar_data as $key => $value){
+            $value->stocks_in_price_range = $filterd_phar[$key]->stocks;
+        }
+        return $phar_data;
+    }
 }

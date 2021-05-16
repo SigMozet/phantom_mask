@@ -52,4 +52,14 @@ class PharmaciesController extends Controller
     {
         return $this->service->searchByName($phar_name);
     }
+
+    /**
+     * 以 價格範圍、庫存數 搜尋藥局
+     * @param  mixed $request
+     * @return void
+     */
+    public function searchByPriceAndStock(Request $request)
+    {
+        return $this->service->searchByPriceAndStock($request);
+    }
 }

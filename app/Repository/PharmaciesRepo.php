@@ -12,6 +12,7 @@ class PharmaciesRepo
 
         $data = DB::table('pharmacies')
         ->whereIn('id',$id_array)
+        ->SELECT('id','name','cashBalance')
         ->get();
 
         return ($data) ? $data : null;

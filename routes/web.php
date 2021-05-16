@@ -27,6 +27,7 @@ Route::prefix('Pharmacies')->group(function () {
     Route::post('openAtDay', 'App\Http\Controllers\PharmaciesController@checkOpenOnDay');
     Route::get('getProduct/{phar_id}', 'App\Http\Controllers\PharmaciesController@getProduct');
     Route::get('search/{phar_name}', 'App\Http\Controllers\PharmaciesController@search');
+    Route::post('searchByPriceAndStock', 'App\Http\Controllers\PharmaciesController@searchByPriceAndStock');
 });
 
 Route::prefix('Masks')->group(function () {
