@@ -93,4 +93,10 @@ class PharmaciesServices
         }
         return $phar_data;
     }
+
+    public function editName($id,$name)
+    {
+        //編輯藥局姓名
+        return $edit =  $this->repo->editName($id,$name);
+    }
 }

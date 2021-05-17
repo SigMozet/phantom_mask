@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\RestLaravelController;
 use App\Services\PharmaciesServices as PharmaciesServices;
 
 
-class PharmaciesController extends Controller
+class PharmaciesController extends RestLaravelController
 {
     public function __construct(PharmaciesServices $service)
     {
@@ -20,7 +21,7 @@ class PharmaciesController extends Controller
      */
     public function checkOpenAtTime(Request $request)
     {
-        return $this->service->checkOpenAtTime($request);
+        return $this->success($this->service->checkOpenAtTime($request));
     }
     
     /**
@@ -30,7 +31,7 @@ class PharmaciesController extends Controller
      */
     public function checkOpenOnDay(Request $request)
     {
-        return $this->service->checkOpenOnDay($request);
+        return $this->success($this->service->checkOpenOnDay($request));
     }
 
     /**
@@ -40,7 +41,7 @@ class PharmaciesController extends Controller
      */
     public function getProduct($phar_id)
     {
-        return $this->service->getProductByPharID($phar_id);
+        return $this->success($this->service->getProductByPharID($phar_id));
     }
 
     /**
@@ -50,7 +51,7 @@ class PharmaciesController extends Controller
      */
     public function search($phar_name)
     {
-        return $this->service->searchByName($phar_name);
+        return $this->success($this->service->searchByName($phar_name));
     }
 
     /**
@@ -60,6 +61,21 @@ class PharmaciesController extends Controller
      */
     public function searchByPriceAndStock(Request $request)
     {
-        return $this->service->searchByPriceAndStock($request);
+        return $this->success($this->service->searchByPriceAndStock($request));
+    }
+
+    /**
+     * 編輯藥局名稱
+     * @param  mixed $request
+     * @return void
+     */
+    public function editName(Request $request)
+    {
+        $phar_id = $request->id;
+        $new_name = $request->name;
+
+        $edit = $this->service->editName($phar_id,$new_name);
+
+        return ($edit > 0) ? $this->success('編輯'.$edit.'筆資料') : $this->failureCode('E0003');
     }
 }

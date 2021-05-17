@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Carbon as SupportCarbon;
 
 class MasksRepo 
 {
@@ -57,6 +58,34 @@ class MasksRepo
           HAVING stocks '.$stocks_type.' '.$stocks_num
         );
         return $data;
+    }
+
+    public function editName($request){
+
+        return $data = DB::table('masks')
+        ->where('id',$request->mask_id)
+        ->where('phar_id',$request->phar_id)
+        ->update(['name' => $request->new_name]);
+    }
+
+    public function editPrice($request){
+
+        return $data = DB::table('masks')
+        ->where('id',$request->mask_id)
+        ->where('phar_id',$request->phar_id)
+        ->update(['price' => $request->price]);
+    }
+
+    public function delete($request){
+
+        $deleted_at = Carbon::now();
+        $delete = DB::table('masks')
+        ->where('id',$request->mask_id)
+        ->where('phar_id',$request->phar_id)
+        ->whereNull('deleted_at')
+        ->update(['deleted_at' => $deleted_at]);
+
+        return ($delete > 0) ? $deleted_at : null;
     }
 
 }

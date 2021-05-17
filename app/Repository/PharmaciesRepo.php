@@ -26,4 +26,11 @@ class PharmaciesRepo
 
         return ($data) ? $data : null;
     }
+
+    public function editName($id,$name){
+
+        return $data = DB::table('pharmacies')
+        ->where('id',$id)
+        ->update(['name' => $name]);
+    }
 }
