@@ -27,7 +27,7 @@ Route::prefix('Pharmacies')->group(function () {
     Route::post('openOnTime', 'App\Http\Controllers\PharmaciesController@checkOpenAtTime');
 
     //以指定星期幾，搜尋營業藥局
-    Route::post('openAtDay', 'App\Http\Controllers\PharmaciesController@checkOpenOnDay');
+    Route::get('openAtDay/{day_of_week}', 'App\Http\Controllers\PharmaciesController@checkOpenOnDay');
 
     //以藥局ID搜尋該藥局販售的口罩
     Route::get('getProduct/{phar_id}', 'App\Http\Controllers\PharmaciesController@getProduct');
@@ -54,4 +54,17 @@ Route::prefix('Masks')->group(function () {
 
     //編輯口罩名稱
     Route::post('deleteMask', 'App\Http\Controllers\MasksController@delete');
+});
+
+Route::prefix('Transaction')->group(function () {
+
+    //找出指定日期中，口罩交易量最高的x位用戶
+    Route::post('RankUserByMaskAmount', 'App\Http\Controllers\TransactionController@RankUserByMaskAmount');
+
+    //指定日期中，所有交易總額
+    Route::post('TotalValueInDateRange', 'App\Http\Controllers\TransactionController@TotalValueInDateRange');
+
+    //指定日期中，所有口罩交易量
+    Route::post('MaskAmountInDateRange', 'App\Http\Controllers\TransactionController@MaskAmountInDateRange');
+
 });
