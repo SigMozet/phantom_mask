@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\RestLaravelController;
 use App\Services\MasksServices as MasksServices;
+use App\Services\PharmaciesServices as PharmaciesServices;
 
 class MasksController extends RestLaravelController
 {
-    public function __construct(MasksServices $service)
+    public function __construct(MasksServices $service,PharmaciesServices $phar_service)
     {
         $this->service = $service;
+        $this->phar_service = $phar_service;
     }
     
     /**
@@ -31,8 +33,21 @@ class MasksController extends RestLaravelController
      */
     public function editName(Request $request)
     {
+        //檢查phar_id是否存在
+        $pharid_existed = $this->phar_service->getDataById($request->phar_id);
+        if(!$pharid_existed->count()){
+            return $this->failureCode('E0004');
+        }
+
+        //檢查mask_id是否存在
+        $maskid_existed = $this->service->getDataById($request->mask_id);
+        if(!$maskid_existed->count()){
+            return $this->failureCode('E0005');
+        }
+
         $edit = $this->service->editName($request);
-        return ($edit>0) ? $this->success('編輯'.$edit.'筆資料') : $this->failureCode('E0003');
+        
+        return ($edit) ? $this->success($edit) : $this->failureCode('E0003');
     }
 
     /**
@@ -42,8 +57,20 @@ class MasksController extends RestLaravelController
      */
     public function editPrice(Request $request)
     {
+        //檢查phar_id是否存在
+        $pharid_existed = $this->phar_service->getDataById($request->phar_id);
+        if(!$pharid_existed->count()){
+            return $this->failureCode('E0004');
+        }
+
+        //檢查mask_id是否存在
+        $maskid_existed = $this->service->getDataById($request->mask_id);
+        if(!$maskid_existed->count()){
+            return $this->failureCode('E0005');
+        }
+
         $edit = $this->service->editPrice($request);
-        return ($edit>0) ? $this->success('編輯'.$edit.'筆資料') : $this->failureCode('E0003');
+        return ($edit) ? $this->success($edit) : $this->failureCode('E0003');
     }
 
     /**

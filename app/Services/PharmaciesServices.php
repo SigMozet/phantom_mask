@@ -20,6 +20,11 @@ class PharmaciesServices
         $this->masks_repo = $masks_repo;
     }
 
+    public function getDataById($id)
+    {
+        return ($this->repo->getDataById($id)); 
+    }
+
     public function checkOpenAtTime($request)
     {
         $day_of_week = $request->day;
@@ -97,6 +102,9 @@ class PharmaciesServices
     public function editName($id,$name)
     {
         //編輯藥局姓名
-        return $edit =  $this->repo->editName($id,$name);
+        $edit =  $this->repo->editName($id,$name);
+
+        //回傳編輯後的藥局資料
+        return $this->repo->getDataById($id);
     }
 }

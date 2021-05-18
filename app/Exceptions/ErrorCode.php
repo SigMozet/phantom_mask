@@ -12,6 +12,8 @@ class ErrorCode
         'E0001' => '傳送參數錯誤',
         'E0002' => '新增失敗',
         'E0003' => '無更新任何資料',
+        'E0004' => '藥局ID不存在',
+        'E0005' => '口罩ID不存在',
     ];
 
     public static function message($code)

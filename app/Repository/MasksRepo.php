@@ -8,6 +8,30 @@ use Illuminate\Support\Carbon as SupportCarbon;
 
 class MasksRepo 
 {
+    public function getDataById($id){
+
+        $data = DB::table('masks')
+        ->where('id',$id)
+        ->SELECT('id','phar_id','name','price','created_at','updated_at')
+        ->get();
+
+        return ($data) ? $data : null;
+    }
+
+    public function getDataByPharAndMaskID($request)
+    {
+        $phar_id = $request->phar_id;
+        $mask_id = $request->mask_id;
+
+        $data = DB::table('masks')
+        ->where('phar_id',$phar_id)
+        ->where('id',$mask_id)
+        ->select('id','phar_id','name','price','created_at','updated_at')
+        ->get();
+
+        return $data;
+    }
+
     public function getProductByPharID($phar_id)
     {
 
@@ -62,10 +86,12 @@ class MasksRepo
 
     public function editName($request){
 
+        $updated_time = Carbon::now();
+
         return $data = DB::table('masks')
         ->where('id',$request->mask_id)
         ->where('phar_id',$request->phar_id)
-        ->update(['name' => $request->new_name]);
+        ->update(['name' => $request->new_name, 'updated_at' => $updated_time]);
     }
 
     public function editPrice($request){

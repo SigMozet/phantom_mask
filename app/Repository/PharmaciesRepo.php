@@ -8,6 +8,16 @@ use DB;
 class PharmaciesRepo 
 {
 
+    public function getDataById($id){
+
+        $data = DB::table('pharmacies')
+        ->where('id',$id)
+        ->SELECT('id','name','cashBalance','created_at','updated_at')
+        ->get();
+
+        return ($data) ? $data : null;
+    }
+
     public function getDataByIdArray($id_array){
 
         $data = DB::table('pharmacies')
@@ -29,8 +39,14 @@ class PharmaciesRepo
 
     public function editName($id,$name){
 
+        $updated_at = Carbon::now();
+
         return $data = DB::table('pharmacies')
         ->where('id',$id)
-        ->update(['name' => $name]);
+        ->update(
+            [
+                'name' => $name,
+                'updated_at' => $updated_at
+            ]);
     }
 }

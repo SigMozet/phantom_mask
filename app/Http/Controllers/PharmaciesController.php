@@ -74,8 +74,14 @@ class PharmaciesController extends RestLaravelController
         $phar_id = $request->id;
         $new_name = $request->name;
 
+        //檢查phar_id是否存在
+        $pharid_existed = $this->service->getDataById($phar_id);
+        if(!$pharid_existed->count()){
+            return $this->failureCode('E0004');
+        }
+
         $edit = $this->service->editName($phar_id,$new_name);
 
-        return ($edit > 0) ? $this->success('編輯'.$edit.'筆資料') : $this->failureCode('E0003');
+        return ($edit) ? $this->success($edit) : $this->failureCode('E0003');
     }
 }
