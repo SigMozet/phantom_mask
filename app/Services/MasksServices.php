@@ -35,7 +35,7 @@ class MasksServices
         //編輯口罩名稱
         $edit = $this->repo->editName($request);
 
-        return $this->repo->getDataByPharAndMaskID($request);
+        return $this->repo->getDataById($request->mask_id);
 
     }
 
@@ -44,7 +44,7 @@ class MasksServices
         //編輯口罩價格
         $edit = $this->repo->editPrice($request);
 
-        return $this->repo->getDataByPharAndMaskID($request);
+        return $this->repo->getDataById($request->mask_id);
     }
 
     public function delete($request)
