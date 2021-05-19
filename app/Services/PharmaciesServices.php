@@ -42,9 +42,8 @@ class PharmaciesServices
         return ($this->repo->getDataByIdArray($id_array)); 
     }
 
-    public function checkOpenOnDay($request)
+    public function checkOpenOnDay($day_of_week)
     {
-        $day_of_week = $request->day;
         //先查詢指定星期幾有營業之藥局id
         $phar_open = $this->business_repo->getByDow($day_of_week);
         
