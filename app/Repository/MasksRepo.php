@@ -105,7 +105,6 @@ class MasksRepo
         $deleted_at = Carbon::now();
         $delete = DB::table('masks')
         ->where('id',$request->mask_id)
-        ->where('phar_id',$request->phar_id)
         ->whereNull('deleted_at')
         ->update(['deleted_at' => $deleted_at]);
 
