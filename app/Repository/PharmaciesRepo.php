@@ -49,4 +49,17 @@ class PharmaciesRepo
                 'updated_at' => $updated_at
             ]);
     }
+
+    public function editCash($id,$cash){
+
+        $updated_at = Carbon::now();
+
+        return $data = DB::table('pharmacies')
+        ->where('id',$id)
+        ->update(
+            [
+                'cashBalance' => $cash,
+                'updated_at' => $updated_at
+            ]);
+    }
 }

@@ -17,4 +17,10 @@ class UserServices
         return $this->repo->getDataById($id);
     }
 
+    public function editCash($id,$cash)
+    {
+        //更改顧客持有金額
+        return $this->repo->editCash($id,$cash);
+    }
+
 }

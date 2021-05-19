@@ -7,6 +7,14 @@ use DB;
 
 class TransactionRepo 
 {
+    public function getDataById($id)
+    {
+        $data = DB::table('transaction')
+        ->where('id',$id)
+        ->get();
+        return $data;
+    }
+
     public function RankUserByMaskAmount($request)
     {
         $top_x = $request->top_x;
@@ -42,4 +50,19 @@ class TransactionRepo
         ->whereBetween('transactionDate',[$request->start_at,$request->end_at])
         ->sum('masks.number_per_packs');
     }
+
+    public function create($user,$phar,$mask,$amount)
+    {
+        $transactionDate = Carbon::now();
+
+        return DB::table('transaction')
+        ->insertGetId([
+            'user_id' => $user,
+            'phar_id' => $phar,
+            'masks_id'=> $mask,
+            'transactionAmount' => $amount,
+            'transactionDate'   => $transactionDate,
+            ]);
+    }
+
 }

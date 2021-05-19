@@ -107,4 +107,10 @@ class PharmaciesServices
         //回傳編輯後的藥局資料
         return $this->repo->getDataById($id);
     }
+
+    public function editCash($id,$cash)
+    {
+        //更改藥局持有金額
+        return $this->repo->editCash($id,$cash);
+    }
 }

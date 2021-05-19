@@ -67,4 +67,7 @@ Route::prefix('Transaction')->group(function () {
     //指定日期中，所有口罩交易量
     Route::post('MaskAmountInDateRange', 'App\Http\Controllers\TransactionController@MaskAmountInDateRange');
 
+    //指定日期中，所有口罩交易量
+    Route::post('transaction', 'App\Http\Controllers\TransactionController@transaction');
+
 });

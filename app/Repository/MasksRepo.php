@@ -12,7 +12,7 @@ class MasksRepo
 
         $data = DB::table('masks')
         ->where('id',$id)
-        ->SELECT('id','phar_id','name','price','created_at','updated_at')
+        ->SELECT('id','phar_id','name','price','count','created_at','updated_at')
         ->get();
 
         return ($data) ? $data : null;
@@ -112,6 +112,15 @@ class MasksRepo
         ->update(['deleted_at' => $deleted_at]);
 
         return ($delete > 0) ? $deleted_at : null;
+    }
+
+    public function editCount($id,$count){
+
+        $updated_time = Carbon::now();
+
+        return $data = DB::table('masks')
+        ->where('id',$id)
+        ->update(['count' => $count, 'updated_at' => $updated_time]);
     }
 
 }

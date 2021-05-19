@@ -29,9 +29,9 @@ class PharmaciesController extends RestLaravelController
      * @param  mixed $request
      * @return void
      */
-    public function checkOpenOnDay(Request $request)
+    public function checkOpenOnDay($day_of_week)
     {
-        return $this->success($this->service->checkOpenOnDay($request));
+        return $this->success($this->service->checkOpenOnDay($day_of_week));
     }
 
     /**

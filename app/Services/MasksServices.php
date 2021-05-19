@@ -14,10 +14,15 @@ class MasksServices
         $this->repo = $repo;
     }
 
-    public function getDataById($mask_name)
+    public function getDataById($id)
     {
-        return ($this->repo->getDataById($mask_name));
+        return ($this->repo->getDataById($id));
     }
+
+    public function getDataByPharAndMaskID($request)
+    {
+        return ($this->repo->getDataByPharAndMaskID($request));
+    }    
 
     public function searchByName($mask_name)
     {
@@ -46,5 +51,11 @@ class MasksServices
     {
         //刪除口罩
         return ($this->repo->delete($request));
+    }
+
+    public function editCount($id,$count)
+    {
+        //編輯口罩庫存數
+        return $this->repo->editCount($id,$count);
     }
 }
