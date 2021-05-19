@@ -33,12 +33,6 @@ class MasksController extends RestLaravelController
      */
     public function editName(Request $request)
     {
-        //檢查phar_id是否存在
-        $pharid_existed = $this->phar_service->getDataById($request->phar_id);
-        if(!$pharid_existed->count()){
-            return $this->failureCode('E0004');
-        }
-
         //檢查mask_id是否存在
         $maskid_existed = $this->service->getDataById($request->mask_id);
         if(!$maskid_existed->count()){
@@ -57,12 +51,6 @@ class MasksController extends RestLaravelController
      */
     public function editPrice(Request $request)
     {
-        //檢查phar_id是否存在
-        $pharid_existed = $this->phar_service->getDataById($request->phar_id);
-        if(!$pharid_existed->count()){
-            return $this->failureCode('E0004');
-        }
-
         //檢查mask_id是否存在
         $maskid_existed = $this->service->getDataById($request->mask_id);
         if(!$maskid_existed->count()){

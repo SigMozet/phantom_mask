@@ -90,7 +90,6 @@ class MasksRepo
 
         return $data = DB::table('masks')
         ->where('id',$request->mask_id)
-        ->where('phar_id',$request->phar_id)
         ->update(['name' => $request->new_name, 'updated_at' => $updated_time]);
     }
 
@@ -98,7 +97,6 @@ class MasksRepo
 
         return $data = DB::table('masks')
         ->where('id',$request->mask_id)
-        ->where('phar_id',$request->phar_id)
         ->update(['price' => $request->price]);
     }
 
