@@ -158,6 +158,7 @@
   **備註:若使用Docker運行，請將Postman內的API domainw由 https://seanphantommask.herokuapp.com/ 更改為 127.0.0.1:8000**
   
   **另因為安全問題，程式的env檔並未存於github上，故docker run後會有500 ServerError的問題，若有需要請寄信，我會再提供給您.env檔**
+  Maill : sos7887961@gmail.com
   ```
   docker build -t=sean_project:latest .
   docker run --rm -it -p 8000:8000 sean_project:latest
