@@ -154,7 +154,9 @@
   可以直接透過Postman參照上方API文件進行測試
 
   亦可以在本地端使用Docker執行以下command，將程式在您本地端執行
+  
   **備註:若使用Docker運行，請將Postman內的API domainw由 https://seanphantommask.herokuapp.com/ 更改為 127.0.0.1:8000**
+  
   **另因為安全問題，程式的env檔並未存於github上，故docker run後會有500 ServerError的問題，若有需要請寄信，我會再提供給您.env檔**
   ```
   docker build -t=sean_project:latest .
